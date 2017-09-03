@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Рабочие руки</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        // Wait for device API libraries to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            var ref = window.open('https://handswork.pro', '_blank', 'location=no');
+            ref.addEventListener("backbutton", onBackKeyDown, false);
+            ref.addEventListener('loadstart', function(event) {
+                //alert('start: ' + event.url);
+                var options = { dimBackground: false };
+                SpinnerPlugin.activityStart(null , options);
+                cordova.plugins.spinnerDialog.show();
+
+
+            });
+            ref.addEventListener('loadstop', function(event) {
+                //alert('stop: ' + event.url);
+                SpinnerPlugin.activityStop();
+                cordova.plugins.spinnerDialog.hide();
+            });
+            ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+            ref.addEventListener('exit', function(event) {
+//                alert(event.type);
+                ref.close();
+
+            });
+
+            // Schedule notification for tomorrow to remember about the meeting
+            /*cordova.plugins.notification.local.schedule({
+                id: 10,
+                title: "Meeting in 15 minutes!",
+                text: "Jour fixe Produktionsbesprechung"
+            });*/
+            function onBackKeyDown() {
+//            alert('backbutton: ' + event.url);
+                alert('backbutton: ');
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
