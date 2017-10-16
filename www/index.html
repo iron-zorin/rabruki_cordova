@@ -13,7 +13,7 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            var ref = window.open('https://handswork.pro', '_blank', 'location=no');
+            var ref = window.open('https://handswork.pro', '_blank', 'location=no', 'toolbar=no');
             ref.addEventListener("backbutton", onBackKeyDown, false);
             ref.addEventListener('loadstart', function(event) {
                 //alert('start: ' + event.url);
