@@ -13,7 +13,8 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            var ref = window.open('https://handswork.pro', '_blank', 'location=no', 'toolbar=no');
+            var options = "location=no,toolbar=no";
+            var ref = cordova.InAppBrowser.open("https://handswork.pro", "_blank", options);
             ref.addEventListener("backbutton", onBackKeyDown, false);
             ref.addEventListener('loadstart', function(event) {
                 //alert('start: ' + event.url);
