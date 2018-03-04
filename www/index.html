@@ -5,15 +5,47 @@
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-
+		//const OS_UID = "cebad915-e73f-4402-b150-60a0bf03b68c";
+		const OS_UID = "0dad8885-38fe-476e-9bbd-d5fe7b275c22";
         // Wait for device API libraries to load
         //
+		
         document.addEventListener("deviceready", onDeviceReady, false);
-
         // device APIs are available
         //
+		
+			function OneSignalSendUID() {
+
+			window.plugins.OneSignal
+				.startInit(OS_UID)
+				.endInit();
+		
+			function SendUID(ids) {
+					
+				url = 'https://handswork.pro/one-signal-id/';
+				var xhr = new XMLHttpRequest(); // Создаём объект xhr
+				xhr.open('POST', url, true); // Открываем асинхронное соединение
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
+				xhr.send('osid=' + ids.userId);
+				xhr.onreadystatechange = function() { // Ждём ответа от сервера
+				  if (xhr.readyState == 4) { // Ответ пришёл
+					if(xhr.status == 200) { // Сервер вернул код 200 (что хорошо)
+						alert (xhr.responseText); // Выводим ответ сервера
+					}
+					else {
+						//alert (xhr.responseText);
+					}
+				  }
+				};			
+			};			
+			
+			window.plugins.OneSignal.getIds(SendUID);
+			
+		}
+				
         function onDeviceReady() {
             var options = "location=no,toolbar=no";
+			var ui;
             var ref = cordova.InAppBrowser.open("https://handswork.pro", "_blank", options);
             ref.addEventListener("backbutton", onBackKeyDown, false);
             ref.addEventListener('loadstart', function(event) {
@@ -24,7 +56,9 @@
 
 
             });
+						
             ref.addEventListener('loadstop', function(event) {
+				OneSignalSendUID();
                 //alert('stop: ' + event.url);
                 SpinnerPlugin.activityStop();
                 cordova.plugins.spinnerDialog.hide();
@@ -45,6 +79,9 @@
 //            alert('backbutton: ' + event.url);
                 alert('backbutton: ');
             }
+			
+
+			
         }
     </script>
 </head>
