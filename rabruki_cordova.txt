@@ -21,3 +21,8 @@ cordova run android
     
 <plugin name="de.appplant.cordova.plugin.local-notification" spec="^0.8.4" />
 cordova plugin add https://github.com/LouisT/cordova-useragent
+
+
+Error: EACCES, permission denied '/Users/name-here/.config/configstore/update-notifier-cordova.json'
+You don't have access to this file.
+sudo chown -R yourusername /Users/yourusername/.config/configstore/
