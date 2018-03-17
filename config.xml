@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.greezlee.handswork" version="0.9.7a" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.greezlee.handswork" version="0.99" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Рабочие руки</name>
     <description>
     </description>
@@ -55,8 +55,6 @@
     </platform>
     <preference name="AppendUserAgent" value="/Cordova" />
     <preference name="Orientation" value="portrait" />
-    <engine name="browser" spec="^4.1.0" />
-    <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.2">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="your usage message" />
     </plugin>
@@ -64,5 +62,8 @@
     <plugin name="onesignal-cordova-plugin" spec="^2.3.1" />
     <plugin name="cordova-plugin-media-capture" spec="~3.0.1" />
     <plugin name="cordova-plugin-ios-camera-permissions" spec="~1.2.0" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
+    <engine name="browser" spec="^4.1.0" />
+    <engine name="android" spec="^6.3.0" />
     <engine name="ios" spec="~4.5.4" />
 </widget>

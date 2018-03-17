@@ -9,11 +9,10 @@
 		const OS_UID = "0dad8885-38fe-476e-9bbd-d5fe7b275c22";
         // Wait for device API libraries to load
         //
-		
         document.addEventListener("deviceready", onDeviceReady, false);
         // device APIs are available
         //
-		
+	
 			function OneSignalSendUID() {
 
 			window.plugins.OneSignal
@@ -44,6 +43,7 @@
 		}
 				
         function onDeviceReady() {
+			var permissions = cordova.plugins.permissions;		
             var options = "location=no,toolbar=no";
 			var ui;
             var ref = cordova.InAppBrowser.open("https://handswork.pro", "_blank", options);
@@ -80,9 +80,32 @@
                 alert('backbutton: ');
             }
 			
+			 
+			var list_permissions = [
+				permissions.CAMERA,
+				permissions.ACCESS_COARSE_LOCATION
+			];
 
-			
-        }
+			permissions.requestPermissions(list_permissions, requestSuccess, requestError);
+
+			var num_permissions = list_permissions.length;
+			function requestSuccess(){
+				for (i = 0; i < num_permissions; i++) {
+					permissions.checkPermission(list_permissions[i], function( status ){
+						if ( status.hasPermission ) {
+							console.warn("Yes :D -> " + list_permissions[i]);
+						}
+						else {
+							console.warn("No :( -> " + list_permissions[i]);
+						}
+					});
+				}
+			}
+
+			function requestError(){
+				console.warn("Permissions request error");
+			}
+		}
     </script>
 </head>
 <body>
