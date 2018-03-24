@@ -26,3 +26,15 @@ cordova plugin add https://github.com/LouisT/cordova-useragent
 Error: EACCES, permission denied '/Users/name-here/.config/configstore/update-notifier-cordova.json'
 You don't have access to this file.
 sudo chown -R yourusername /Users/yourusername/.config/configstore/
+
+
+cordova build --release android
+cd platforms\android\build\outputs\apk
+"%JAVA_HOME%\bin\keytool.exe" -genkey -v -keystore rabruki_cordova.keystore -alias rabruki_cordova -keyalg RSA -keysize 2048 -validity 10000
+//Пароль Gmsa%zx32k-=dfg
+
+"%JAVA_HOME%\bin\jarsigner.exe"  -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore rabruki_cordova.keystore android-release-unsigned.apk rabruki_cordova -tsa http://timestamp.digicert.com
+"%ANDROID_HOME%\build-tools\21.1.2\zipalign.exe"  -v 4 android-release-unsigned.apk rabruki_cordova_1.0.0.apk
+
+Android pro.handswork.rabruki
+iOs com.greezlee.rabruki

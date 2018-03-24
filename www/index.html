@@ -13,6 +13,11 @@
         // device APIs are available
         //
 	
+			function OneSignalSendTag(key, value) {
+				//alert (value);
+				window.plugins.OneSignal.sendTag(key, value);
+			}
+			
 			function OneSignalSendUID() {
 
 			window.plugins.OneSignal
@@ -30,6 +35,7 @@
 				  if (xhr.readyState == 4) { // Ответ пришёл
 					if(xhr.status == 200) { // Сервер вернул код 200 (что хорошо)
 						//alert (xhr.responseText); // Выводим ответ сервера
+						OneSignalSendTag("user_role", xhr.responseText)
 					}
 					else {
 						//alert (xhr.responseText);
